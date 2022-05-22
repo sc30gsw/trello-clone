@@ -1,9 +1,11 @@
-import { Header } from "./components/Header";
+import { Header } from "./components/header/Header";
+import { TaskCards } from "./components/task/TaskCards";
 
 export const App = () => {
 	return (
-		<div>
+		<div className="app">
 			<Header />
+			<TaskCards />
 		</div>
 	);
 };
