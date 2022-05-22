@@ -11,8 +11,8 @@ import { TaskElement } from "./TaskElement";
 export const Tasks: FC<{ taskList: Task[] }> = ({ taskList }) => {
 	return (
 		<div>
-			{taskList.map((task, index) => (
-				<div key={index}>
+			{taskList.map((task) => (
+				<div key={task.id}>
 					<TaskElement task={task} />
 				</div>
 			))}

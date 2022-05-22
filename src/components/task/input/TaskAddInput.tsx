@@ -27,7 +27,7 @@ export const TaskAddInput: FC<{
 		e.preventDefault();
 
 		// form送信(submit)時、タスクを追加する
-		setTaskList([...taskList, { text: inputText }]);
+		setTaskList([...taskList, { id: taskList.length, text: inputText }]);
 
 		// form送信時、Inputテキストを空にする
 		setInputText("");
