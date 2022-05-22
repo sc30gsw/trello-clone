@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
-export const Header = () => {
+/**
+ * ヘッダーの描画を行うコンポーネント
+ *
+ * @returns ヘッダーを表示する要素
+ */
+export const Header: FC = () => {
 	return (
 		<div>
 			<SHeader>
