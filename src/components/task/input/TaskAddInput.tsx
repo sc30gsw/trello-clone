@@ -26,6 +26,11 @@ export const TaskAddInput: FC<{
 		// formが送信された際に、画面が更新されないようにする
 		e.preventDefault();
 
+		// 入力されたタスクが空なら処理を中断する
+		if (inputText === "") {
+			return;
+		}
+
 		// form送信(submit)時、タスクを追加する
 		setTaskList([...taskList, { id: taskList.length, text: inputText }]);
 
