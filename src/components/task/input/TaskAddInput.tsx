@@ -1,6 +1,7 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import type { Task } from "../../../types/task";
+import { v4 as uuid } from "uuid";
 
 /**
  * タスクを入力し、formでタスクを送信するコンポーネント
@@ -31,8 +32,17 @@ export const TaskAddInput: FC<{
 			return;
 		}
 
+		// ランダム(一意)なidを生成
+		const taskId = uuid();
 		// form送信(submit)時、タスクを追加する
-		setTaskList([...taskList, { id: taskList.length, text: inputText }]);
+		setTaskList([
+			...taskList,
+			{
+				id: taskId,
+				draggableId: `task-${taskId}`,
+				text: inputText,
+			},
+		]);
 
 		// form送信時、Inputテキストを空にする
 		setInputText("");
