@@ -20,8 +20,10 @@ export const TaskCard: FC = () => {
 
 	return (
 		<STaskCard>
-			<TaskCardTitle />
-			<TaskCardDeleteButton />
+			<STaskCardTitleAndTaskCardDeleteButtonArea>
+				<TaskCardTitle />
+				<TaskCardDeleteButton />
+			</STaskCardTitleAndTaskCardDeleteButtonArea>
 			<TaskAddInput
 				inputText={inputText}
 				setInputText={setInputText}
@@ -32,6 +34,11 @@ export const TaskCard: FC = () => {
 		</STaskCard>
 	);
 };
+
+const STaskCardTitleAndTaskCardDeleteButtonArea = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
 
 const STaskCard = styled.div`
 	width: 250px;
