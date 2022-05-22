@@ -1,10 +1,37 @@
-import React from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import styled from "styled-components";
+import type { Card } from "../../../types/card";
+import { v4 as uuid } from "uuid";
 
-export const AddTaskCardButton = () => {
+/**
+ * 追加ボタンを描画・押下し、タスクカードを追加するコンポーネント
+ *
+ * @param taskCardList
+ * @param setTaskCardList
+ * @returns タスクカードを追加するボタンを構成する要素
+ */
+export const AddTaskCardButton: FC<{
+	taskCardsList: Card[];
+	setTaskCardsList: Dispatch<SetStateAction<Card[]>>;
+}> = ({ taskCardsList, setTaskCardsList }) => {
+	/**
+	 * 追加ボタン押下時タスクカードを追加する処理
+	 */
+	const addTaskCard = () => {
+		const taskCardId = uuid();
+		// タスクカードを追加する
+		setTaskCardsList([
+			...taskCardsList,
+			{
+				id: taskCardId,
+				draggableId: `item${taskCardId}`,
+			},
+		]);
+	};
+
 	return (
 		<SAddTaskCardButtonArea>
-			<SAddTaskCardButton>+</SAddTaskCardButton>
+			<SAddTaskCardButton onClick={addTaskCard}>+</SAddTaskCardButton>
 		</SAddTaskCardButtonArea>
 	);
 };
