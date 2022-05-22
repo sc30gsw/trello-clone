@@ -6,6 +6,11 @@ import { Tasks } from "./Tasks";
 import styled from "styled-components";
 import type { Task } from "../../types/task";
 
+/**
+ * タスク一覧を表示するコンポーネント(親コンポーネント)
+ *
+ * @returns タスク一覧を構成する要素
+ */
 export const TaskCard: FC = () => {
 	// タスク追加入力欄(input要素)を監視するState(初期値: "")
 	const [inputText, setInputText] = useState<string>("");

@@ -2,6 +2,15 @@ import React, { FC, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import type { Task } from "../../../types/task";
 
+/**
+ * タスクを入力し、formでタスクを送信するコンポーネント
+ *
+ * @param inputText 入力されたタスク
+ * @param setInputText
+ * @param taskList 追加されたタスク配列
+ * @param setTaskList
+ * @returns タスク入力フォーム
+ */
 export const TaskAddInput: FC<{
 	inputText: string;
 	setInputText: Dispatch<SetStateAction<string>>;

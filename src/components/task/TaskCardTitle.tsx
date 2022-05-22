@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 
-export const TaskCardTitle = () => {
+/**
+ * タスクタイトルを作成するコンポーネント
+ *
+ * @returns タスクタイトルの要素
+ */
+export const TaskCardTitle: FC = () => {
 	// クリックしたかどうかを監視するState(初期値: false)
 	const [isClick, setIsClick] = useState(false);
 	// タスクカードのタイトルを監視するState(初期値: Today)
