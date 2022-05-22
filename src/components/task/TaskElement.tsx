@@ -8,9 +8,13 @@ import { Draggable } from "react-beautiful-dnd";
  * 個々のタスクを描画するコンポーネント
  *
  * @param task 個々のタスク
+ * @param index taskListが何番目かという情報を格納している
  * @returns 個々のタスクを構成する要素
  */
-export const TaskElement: FC<{ task: Task }> = ({ task }) => {
+export const TaskElement: FC<{ task: Task; index: number }> = ({
+	task,
+	index,
+}) => {
 	// Contextから値を取得
 	const { taskList, setTaskList } = useContext(TaskListContext);
 
@@ -27,7 +31,7 @@ export const TaskElement: FC<{ task: Task }> = ({ task }) => {
 
 	return (
 		// ドラッグする要素をDraggableで囲う
-		<Draggable index={task.id} draggableId={task.draggableId}>
+		<Draggable index={index} draggableId={task.draggableId}>
 			{(provided) => (
 				<STaskBox
 					key={task.id}
