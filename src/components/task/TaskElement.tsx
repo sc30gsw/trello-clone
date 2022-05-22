@@ -23,7 +23,7 @@ export const TaskElement: FC<{ task: Task; index: number }> = ({
 	 *
 	 * @param id 削除ボタンが押されたタスクのID
 	 */
-	const handleDelete = (id: number) => {
+	const handleDelete = (id: string) => {
 		// タスクのIDと削除ボタンが押されたタスクのIDが等しくないタスクのみ設定する
 		// IDが一致するもののみ削除する
 		setTaskList(taskList.filter((task) => task.id !== id));
