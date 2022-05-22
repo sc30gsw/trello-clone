@@ -1,11 +1,12 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+import type { Task } from "../../../types/task";
 
 export const TaskAddInput: FC<{
 	inputText: string;
 	setInputText: Dispatch<SetStateAction<string>>;
-	taskList: never[];
-	setTaskList: Dispatch<SetStateAction<never[]>>;
+	taskList: Task[];
+	setTaskList: Dispatch<SetStateAction<Task[]>>;
 }> = ({ inputText, setInputText, taskList, setTaskList }) => {
 	/**
 	 * Formが送信された時、画面が更新されないようにする処理
@@ -13,7 +14,14 @@ export const TaskAddInput: FC<{
 	 * @param e Form要素の送信(submit)Event
 	 */
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		// formが送信された際に、画面が更新されないようにする
 		e.preventDefault();
+
+		// form送信(submit)時、タスクを追加する
+		setTaskList([...taskList, { text: inputText }]);
+
+		// form送信時、Inputテキストを空にする
+		setInputText("");
 	};
 
 	/**
@@ -32,6 +40,7 @@ export const TaskAddInput: FC<{
 					type="text"
 					placeholder="add a task"
 					onChange={handleChange}
+					value={inputText}
 				/>
 			</form>
 		</div>
