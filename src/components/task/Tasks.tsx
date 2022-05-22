@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import type { Task } from "../../types/task";
 import { TaskElement } from "./TaskElement";
 
@@ -10,12 +11,20 @@ import { TaskElement } from "./TaskElement";
  */
 export const Tasks: FC<{ taskList: Task[] }> = ({ taskList }) => {
 	return (
-		<div>
-			{taskList.map((task) => (
-				<div key={task.id}>
-					<TaskElement task={task} />
-				</div>
-			))}
-		</div>
+		<DragDropContext onDragEnd={() => {}}>
+			{/* ドラッグ&ドロップ可能領域 */}
+			<Droppable droppableId="droppable">
+				{(provided) => (
+					<div {...provided.droppableProps} ref={provided.innerRef}>
+						{taskList.map((task) => (
+							<div key={task.id}>
+								<TaskElement task={task} />
+							</div>
+						))}
+						{provided.placeholder}
+					</div>
+				)}
+			</Droppable>
+		</DragDropContext>
 	);
 };

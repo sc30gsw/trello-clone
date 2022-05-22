@@ -2,6 +2,7 @@ import React, { FC, useContext } from "react";
 import type { Task } from "../../types/task";
 import styled from "styled-components";
 import { TaskListContext } from "../providers/TaskListProvider";
+import { Draggable } from "react-beautiful-dnd";
 
 /**
  * 個々のタスクを描画するコンポーネント
@@ -25,12 +26,22 @@ export const TaskElement: FC<{ task: Task }> = ({ task }) => {
 	};
 
 	return (
-		<STaskBox>
-			<STaskText>{task.text}</STaskText>
-			<STaskButton onClick={() => handleDelete(task.id)}>
-				<i className="fas fa-trash-alt"></i>
-			</STaskButton>
-		</STaskBox>
+		// ドラッグする要素をDraggableで囲う
+		<Draggable index={task.id} draggableId={task.draggableId}>
+			{(provided) => (
+				<STaskBox
+					key={task.id}
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+				>
+					<STaskText>{task.text}</STaskText>
+					<STaskButton onClick={() => handleDelete(task.id)}>
+						<i className="fas fa-trash-alt"></i>
+					</STaskButton>
+				</STaskBox>
+			)}
+		</Draggable>
 	);
 };
 
