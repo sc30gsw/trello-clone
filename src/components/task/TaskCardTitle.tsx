@@ -15,7 +15,7 @@ export const TaskCardTitle = () => {
 	};
 
 	/**
-	 * Input要素に入力された値をinputCardTitleに代入する処理
+	 * Input要素に入力された値をinputCardTitleにセットする処理
 	 *
 	 * @param e Input要素のChangeEvent
 	 */
