@@ -1,13 +1,32 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import { TaskCard } from "../task/TaskCard";
 import { AddTaskCardButton } from "./button/AddTaskCardButton";
+import type { Card } from "../../types/card";
 
-export const TaskCards = () => {
+/**
+ * タスクカードを作成するコンポーネント
+ *
+ * @returns タスクカードを構成する要素
+ */
+export const TaskCards: FC = () => {
+	// タスクカードを配列で監視するState(初期値: Card[0]={id: "0", draggableId: "item0"})
+	// 初期値があることによって、画面描画時にタスクカードが1つデフォルト表示される
+	const [taskCardsList, setTaskCardsList] = useState<Card[]>([
+		{
+			id: "0",
+			draggableId: "item0",
+		},
+	]);
 	return (
 		<STaskCardsArea>
-			<TaskCard />
-			<AddTaskCardButton />
+			{taskCardsList.map((taskCardList) => (
+				<TaskCard key={taskCardList.id} />
+			))}
+			<AddTaskCardButton
+				taskCardsList={taskCardsList}
+				setTaskCardsList={setTaskCardsList}
+			/>
 		</STaskCardsArea>
 	);
 };
