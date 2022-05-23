@@ -20,8 +20,13 @@ export const TaskCards: FC = () => {
 	]);
 	return (
 		<STaskCardsArea>
-			{taskCardsList.map((taskCardList) => (
-				<TaskCard key={taskCardList.id} />
+			{taskCardsList.map((taskCard) => (
+				<TaskCard
+					key={taskCard.id}
+					taskCardsList={taskCardsList}
+					setTaskCardsList={setTaskCardsList}
+					taskCard={taskCard}
+				/>
 			))}
 			<AddTaskCardButton
 				taskCardsList={taskCardsList}
