@@ -56,7 +56,7 @@ export const TaskCard: FC<{
 						taskList={taskList}
 						setTaskList={setTaskList}
 					/>
-					<Tasks taskList={taskList} />
+					<Tasks taskList={taskList} setTaskList={setTaskList} />
 				</STaskCard>
 			)}
 		</Draggable>

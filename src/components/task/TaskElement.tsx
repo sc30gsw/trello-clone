@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { Dispatch, FC, SetStateAction, useContext } from "react";
 import type { Task } from "../../types/task";
 import styled from "styled-components";
 import { TaskListContext } from "../providers/TaskListProvider";
@@ -11,13 +11,12 @@ import { Draggable } from "react-beautiful-dnd";
  * @param index taskListが何番目かという情報を格納している
  * @returns 個々のタスクを構成する要素
  */
-export const TaskElement: FC<{ task: Task; index: number }> = ({
-	task,
-	index,
-}) => {
-	// Contextから値を取得
-	const { taskList, setTaskList } = useContext(TaskListContext);
-
+export const TaskElement: FC<{
+	taskList: Task[];
+	setTaskList: Dispatch<SetStateAction<Task[]>>;
+	task: Task;
+	index: number;
+}> = ({ taskList, setTaskList, task, index }) => {
 	/**
 	 * タスクを削除する処理
 	 *

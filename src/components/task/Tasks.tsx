@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { Dispatch, FC, SetStateAction, useContext } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import type { Task } from "../../types/task";
 import { TaskListContext } from "../providers/TaskListProvider";
@@ -10,10 +10,10 @@ import { TaskElement } from "./TaskElement";
  * @param taskList Stateに設定されているタスク配列
  * @returns タスクリストを表示する要素
  */
-export const Tasks: FC<{ taskList: Task[] }> = ({ taskList }) => {
-	// Contextから値を取得
-	const { setTaskList } = useContext(TaskListContext);
-
+export const Tasks: FC<{
+	taskList: Task[];
+	setTaskList: Dispatch<SetStateAction<Task[]>>;
+}> = ({ taskList, setTaskList }) => {
 	/**
 	 * ドラッグ&ドロップ時の挙動を扱う処理
 	 *
@@ -33,7 +33,12 @@ export const Tasks: FC<{ taskList: Task[] }> = ({ taskList }) => {
 					<div {...provided.droppableProps} ref={provided.innerRef}>
 						{taskList.map((task, index) => (
 							<div key={task.id}>
-								<TaskElement index={index} task={task} />
+								<TaskElement
+									index={index}
+									task={task}
+									taskList={taskList}
+									setTaskList={setTaskList}
+								/>
 							</div>
 						))}
 						{provided.placeholder}
