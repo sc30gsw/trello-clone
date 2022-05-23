@@ -1,7 +1,6 @@
-import React, { Dispatch, FC, SetStateAction, useContext } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import type { Task } from "../../types/task";
-import { TaskListContext } from "../providers/TaskListProvider";
 import { TaskElement } from "./TaskElement";
 
 /**

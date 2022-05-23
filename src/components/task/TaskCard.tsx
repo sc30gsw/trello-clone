@@ -1,15 +1,8 @@
-import React, {
-	FC,
-	useState,
-	useContext,
-	SetStateAction,
-	Dispatch,
-} from "react";
+import React, { FC, useState, SetStateAction, Dispatch } from "react";
 import { TaskAddInput } from "./input/TaskAddInput";
 import { TaskCardDeleteButton } from "./button/TaskCardDeleteButton";
 import { TaskCardTitle } from "./TaskCardTitle";
 import { Tasks } from "./Tasks";
-import { TaskListContext } from "../providers/TaskListProvider";
 import styled from "styled-components";
 import { Card } from "../../types/card";
 import { Draggable } from "react-beautiful-dnd";

@@ -1,7 +1,6 @@
-import React, { Dispatch, FC, SetStateAction, useContext } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import type { Task } from "../../types/task";
 import styled from "styled-components";
-import { TaskListContext } from "../providers/TaskListProvider";
 import { Draggable } from "react-beautiful-dnd";
 
 /**
