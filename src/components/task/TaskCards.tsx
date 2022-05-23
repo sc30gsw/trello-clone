@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TaskCard } from "../task/TaskCard";
 import { AddTaskCardButton } from "./button/AddTaskCardButton";
 import type { Card } from "../../types/card";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 /**
  * タスクカードを作成するコンポーネント
@@ -19,20 +20,28 @@ export const TaskCards: FC = () => {
 		},
 	]);
 	return (
-		<STaskCardsArea>
-			{taskCardsList.map((taskCard) => (
-				<TaskCard
-					key={taskCard.id}
-					taskCardsList={taskCardsList}
-					setTaskCardsList={setTaskCardsList}
-					taskCard={taskCard}
-				/>
-			))}
-			<AddTaskCardButton
-				taskCardsList={taskCardsList}
-				setTaskCardsList={setTaskCardsList}
-			/>
-		</STaskCardsArea>
+		<DragDropContext onDragEnd={() => {}}>
+			<Droppable droppableId="droppable" direction="horizontal">
+				{(provided) => (
+					<STaskCardsArea {...provided.droppableProps} ref={provided.innerRef}>
+						{taskCardsList.map((taskCard, index) => (
+							<TaskCard
+								key={taskCard.id}
+								index={index}
+								taskCardsList={taskCardsList}
+								setTaskCardsList={setTaskCardsList}
+								taskCard={taskCard}
+							/>
+						))}
+						{provided.placeholder}
+						<AddTaskCardButton
+							taskCardsList={taskCardsList}
+							setTaskCardsList={setTaskCardsList}
+						/>
+					</STaskCardsArea>
+				)}
+			</Droppable>
+		</DragDropContext>
 	);
 };
 
